@@ -28,7 +28,7 @@ export default function Navbar() {
         <div className="md:hidden px-6 pb-4 space-y-2 bg-blue-600">
           <Link to="/" onClick={() => setIsOpen(false)} className="block hover:underline">Home</Link>
           <Link to="/about" onClick={() => setIsOpen(false)} className="block hover:underline">About</Link>
-          <Link to="/question-bank" onClick={() => setIsOpen(false)} className="block hover:underline">Question Bank</Link>
+          <Link to="/questions" onClick={() => setIsOpen(false)} className="block hover:underline">Question Bank</Link>
         </div>
       )}
     </nav>
