@@ -1,0 +1,135 @@
+const questions = [
+   // Programming Languages
+  { question: 'What is the difference between let, const, and var in JavaScript?', category: 'Programming Languages', answer: 'let and const are block scoped, var is function scoped. const cannot be reassigned.' },
+  { question: 'What are the key features of TypeScript?', category: 'Programming Languages', answer: 'Static typing, interfaces, access modifiers, enums, and tooling support.' },
+  { question: 'How does hoisting work in JavaScript?', category: 'Programming Languages', answer: 'Declarations are moved to the top of the scope before execution.' },
+  { question: 'What is the difference between == and === in JavaScript?', category: 'Programming Languages', answer: '== compares values with coercion; === compares values without coercion.' },
+  { question: 'Explain closures in JavaScript.', category: 'Programming Languages', answer: 'A closure allows a function to access variables from its outer scope even after the outer function has returned.' },
+  { question: 'What is the purpose of the “use strict” directive?', category: 'Programming Languages', answer: 'It enforces stricter parsing and error handling.' },
+  { question: 'How does the event loop work in JavaScript?', category: 'Programming Languages', answer: 'It processes asynchronous callbacks after the current call stack is cleared.' },
+  { question: 'What are arrow functions and how are they different from regular functions?', category: 'Programming Languages', answer: 'Arrow functions do not have their own this and are more concise.' },
+  { question: 'Explain the concept of prototypal inheritance.', category: 'Programming Languages', answer: 'Objects inherit directly from other objects using the prototype chain.' },
+  { question: 'What is the difference between deep and shallow copy?', category: 'Programming Languages', answer: 'Shallow copy copies top-level properties; deep copy recursively copies nested objects.' },
+
+   // Fullstack Development
+  { question: 'What is fullstack development?', category: 'Fullstack Development', answer: 'Fullstack development involves working on both frontend and backend parts of an application.' },
+  { question: 'What are common tech stacks used in fullstack development?', category: 'Fullstack Development', answer: 'Popular stacks include MERN, MEAN, LAMP, JAMstack, and Django + React.' },
+  { question: 'How do frontend and backend communicate?', category: 'Fullstack Development', answer: 'Typically through HTTP APIs (REST or GraphQL) using JSON data.' },
+  { question: 'What is server-side rendering (SSR) and why use it?', category: 'Fullstack Development', answer: 'SSR renders HTML on the server to improve SEO and load times.' },
+  { question: 'What is the role of middleware in a fullstack app?', category: 'Fullstack Development', answer: 'Middleware handles tasks like authentication, logging, and request transformation.' },
+  { question: 'What are common security concerns in fullstack apps?', category: 'Fullstack Development', answer: 'SQL injection, XSS, CSRF, insecure authentication, and data leaks.' },
+  { question: 'How do you manage environment-specific settings?', category: 'Fullstack Development', answer: 'Use .env files and config libraries to separate dev, test, and prod variables.' },
+  { question: 'What is CORS and how do you handle it in a fullstack app?', category: 'Fullstack Development', answer: 'CORS restricts cross-origin requests. It’s managed with headers on the server.' },
+  { question: 'What are benefits of using TypeScript in fullstack development?', category: 'Fullstack Development', answer: 'Improved type safety, code readability, and shared interfaces between client and server.' },
+  { question: 'How do you deploy a fullstack app?', category: 'Fullstack Development', answer: 'Options include Vercel/Netlify for frontend and platforms like Heroku, Render, or VPS for backend.' },
+
+  // Frontend Development
+  { question: 'Explain the Virtual DOM in React.', category: 'Frontend Development', answer: 'It is a virtual representation of the UI kept in memory and synced with the real DOM.' },
+  { question: 'What are React hooks and why are they useful?', category: 'Frontend Development', answer: 'They let you use state and lifecycle methods in functional components.' },
+  { question: 'What is the difference between controlled and uncontrolled components?', category: 'Frontend Development', answer: 'Controlled components use state to manage input; uncontrolled use refs.' },
+  { question: 'How does React handle state updates?', category: 'Frontend Development', answer: 'React batches updates and re-renders components with updated state.' },
+  { question: 'What is JSX and how is it compiled?', category: 'Frontend Development', answer: 'JSX is syntax that compiles to React.createElement calls.' },
+  { question: 'What are the advantages of using TailwindCSS?', category: 'Frontend Development', answer: 'Utility-first approach, reusable styles, responsive design.' },
+  { question: 'How does useEffect differ from componentDidMount?', category: 'Frontend Development', answer: 'useEffect can replace componentDidMount, componentDidUpdate, and componentWillUnmount.' },
+  { question: 'What are React fragments and why are they used?', category: 'Frontend Development', answer: 'They allow grouping elements without adding extra nodes to the DOM.' },
+  { question: 'How does reconciliation work in React?', category: 'Frontend Development', answer: 'React compares virtual DOM trees and applies minimal DOM operations.' },
+  { question: 'What is lazy loading and how is it implemented in React?', category: 'Frontend Development', answer: 'Using React.lazy and Suspense to load components when needed.' },
+
+  // Backend Development
+  { question: 'What is a REST API and how does it work?', category: 'Backend Development', answer: 'It provides standard methods to access resources over HTTP.' },
+  { question: 'Explain the concept of middleware in Express.js.', category: 'Backend Development', answer: 'Functions that process requests and responses before final handling.' },
+  { question: 'What is the difference between synchronous and asynchronous code?', category: 'Backend Development', answer: 'Synchronous code blocks execution; asynchronous allows concurrent operations.' },
+  { question: 'What are environment variables and how are they used?', category: 'Backend Development', answer: 'They store config like API keys outside of source code.' },
+  { question: 'What is JWT and how is it used for authentication?', category: 'Backend Development', answer: 'JWT is a token that securely transmits user information and verifies identity.' },
+  { question: 'What is CORS and how do you handle it?', category: 'Backend Development', answer: 'CORS is a browser security feature; it can be managed using headers or middleware.' },
+  { question: 'What is the difference between PUT and PATCH?', category: 'Backend Development', answer: 'PUT replaces the entire resource; PATCH updates parts of the resource.' },
+  { question: 'How does Node.js handle concurrency?', category: 'Backend Development', answer: 'Through an event-driven, non-blocking I/O model using a single thread.' },
+  { question: 'What is rate limiting and why is it important?', category: 'Backend Development', answer: 'It limits client request rates to protect the server from abuse.' },
+  { question: 'How do you structure a scalable Express.js app?', category: 'Backend Development', answer: 'Using MVC pattern, separate routes, controllers, middleware, and services.' },
+
+
+   // Databases
+  { question: 'What are ACID properties in database systems?', category: 'Databases', answer: 'ACID stands for Atomicity, Consistency, Isolation, Durability — properties that ensure reliable database transactions.' },
+  { question: 'What is normalization and why is it important?', category: 'Databases', answer: 'Normalization organizes data to reduce redundancy and improve integrity by dividing tables and establishing relationships.' },
+  { question: 'What is an index and how does it improve performance?', category: 'Databases', answer: 'An index is a data structure that improves query performance by allowing faster data retrieval.' },
+  { question: 'What is the difference between SQL and NoSQL?', category: 'Databases', answer: 'SQL databases are relational and use structured schemas; NoSQL databases are non-relational and flexible with data models.' },
+  { question: 'What are foreign keys and how are they used?', category: 'Databases', answer: 'Foreign keys establish a relationship between two tables and enforce referential integrity.' },
+  { question: 'What is a database transaction?', category: 'Databases', answer: 'A database transaction is a sequence of operations performed as a single logical unit of work that must be either fully completed or aborted.' },
+  { question: 'Explain the difference between clustered and non-clustered indexes.', category: 'Databases', answer: 'Clustered indexes determine the physical order of data; non-clustered indexes store a pointer to the actual data.' },
+  { question: 'What is a deadlock and how can it be resolved?', category: 'Databases', answer: 'A deadlock is a situation where two or more operations wait on each other to release resources. It is resolved by timeout, rollback, or deadlock detection.' },
+  { question: 'How do you prevent SQL injection?', category: 'Databases', answer: 'By using prepared statements, parameterized queries, and input validation.' },
+  { question: 'What is sharding and when should you use it?', category: 'Databases', answer: 'Sharding splits a database into smaller, faster parts called shards. It’s used for horizontal scaling.' },
+
+  // Cybersecurity
+  { question: 'What is SQL injection and how can it be prevented?', category: 'Cybersecurity', answer: 'A code injection attack that manipulates SQL queries. Prevent it using parameterized queries and input validation.' },
+  { question: 'What are the key principles of the CIA triad?', category: 'Cybersecurity', answer: 'Confidentiality, Integrity, and Availability — the core goals of cybersecurity.' },
+  { question: 'What is XSS and how do you prevent it?', category: 'Cybersecurity', answer: 'Cross-site scripting injects malicious scripts into websites. Prevent it with input sanitization and Content Security Policy (CSP).' },
+  { question: 'What is the difference between authentication and authorization?', category: 'Cybersecurity', answer: 'Authentication verifies identity; authorization grants access to resources.' },
+  { question: 'What is 2FA and how does it work?', category: 'Cybersecurity', answer: 'Two-factor authentication uses two methods to verify identity, such as password and OTP.' },
+  { question: 'What are common hashing algorithms?', category: 'Cybersecurity', answer: 'MD5, SHA-1, SHA-256, bcrypt, etc., are used to secure passwords and data.' },
+  { question: 'What is the role of SSL/TLS in web security?', category: 'Cybersecurity', answer: 'SSL/TLS encrypts data between client and server to protect against eavesdropping and tampering.' },
+  { question: 'What is a man-in-the-middle attack?', category: 'Cybersecurity', answer: 'An attacker intercepts and possibly alters communication between two parties without their knowledge.' },
+  { question: 'What is CSRF and how can you protect against it?', category: 'Cybersecurity', answer: 'Cross-site request forgery tricks a user into performing actions unknowingly. Use CSRF tokens and SameSite cookies to prevent it.' },
+  { question: 'What is role-based access control (RBAC)?', category: 'Cybersecurity', answer: 'RBAC restricts system access based on users’ roles and responsibilities.' },
+
+  // Data & Analytics
+  { question: 'What is the difference between OLAP and OLTP?', category: 'Data & Analytics', answer: 'OLAP is used for analysis and reporting; OLTP is optimized for transactional operations.' },
+  { question: 'What are the steps in the data analysis process?', category: 'Data & Analytics', answer: 'Collection, cleaning, exploration, modeling, interpretation, and reporting.' },
+  { question: 'What is ETL and why is it important?', category: 'Data & Analytics', answer: 'Extract, Transform, Load — a process to prepare data for analysis and storage.' },
+  { question: 'What is data warehousing?', category: 'Data & Analytics', answer: 'A centralized repository for storing integrated data from multiple sources for analysis and reporting.' },
+  { question: 'What is data cleaning?', category: 'Data & Analytics', answer: 'Removing or correcting incorrect, incomplete, or irrelevant data to improve quality.' },
+  { question: 'What are key performance indicators (KPIs)?', category: 'Data & Analytics', answer: 'Metrics used to evaluate the success of a business or process.' },
+  { question: 'What is the difference between correlation and causation?', category: 'Data & Analytics', answer: 'Correlation shows a relationship between variables; causation proves one causes the other.' },
+  { question: 'What is A/B testing?', category: 'Data & Analytics', answer: 'A method of comparing two versions to determine which performs better.' },
+  { question: 'What is a data pipeline?', category: 'Data & Analytics', answer: 'A series of steps to process and move data from one system to another.' },
+  { question: 'What tools are commonly used in data analysis?', category: 'Data & Analytics', answer: 'Tools like Excel, SQL, Python, R, Tableau, Power BI, etc.' },
+   // System Design
+  { question: 'How would you design a scalable URL shortening service?', category: 'System Design', answer: 'Use a unique ID generator, key-value store (like Redis), database for persistence, and CDN for redirection performance.' },
+  { question: 'How do you design a rate limiter?', category: 'System Design', answer: 'Use algorithms like token bucket or leaky bucket, implemented via Redis or in-memory cache to track requests per IP.' },
+  { question: 'How would you scale a database?', category: 'System Design', answer: 'Use vertical scaling, replication, sharding, load balancing, and caching to handle more traffic and data.' },
+  { question: 'What is caching and how is it used in system design?', category: 'System Design', answer: 'Caching stores frequently accessed data in-memory (e.g., Redis, Memcached) to reduce load and improve performance.' },
+  { question: 'How would you design a messaging system like WhatsApp?', category: 'System Design', answer: 'Use WebSocket for real-time messaging, message queue (Kafka), database for message storage, and encryption for security.' },
+  { question: 'What is a load balancer and how does it work?', category: 'System Design', answer: 'A load balancer distributes incoming traffic across multiple servers to ensure availability and reliability.' },
+  { question: 'What is a CDN and why use one?', category: 'System Design', answer: 'A Content Delivery Network stores cached content in edge servers to deliver data quickly and reduce latency.' },
+  { question: 'How do you ensure data consistency in distributed systems?', category: 'System Design', answer: 'Use consensus protocols (e.g., Paxos, Raft), quorum reads/writes, eventual consistency, and distributed transactions.' },
+  { question: 'What is microservices architecture?', category: 'System Design', answer: 'It structures an application as a collection of loosely coupled, independently deployable services.' },
+  { question: 'How would you design an e-commerce search system?', category: 'System Design', answer: 'Use full-text search engine (like Elasticsearch), autocomplete, filters, caching, and analytics for ranking.' },
+
+  // Algorithms
+  { question: 'What is the time complexity of quicksort?', category: 'Algorithms', answer: 'Average case: O(n log n); Worst case: O(n²); Best case: O(n log n).' },
+  { question: 'What is dynamic programming?', category: 'Algorithms', answer: 'A technique to solve problems by breaking them down into subproblems and storing results to avoid recomputation.' },
+  { question: 'Explain the difference between BFS and DFS.', category: 'Algorithms', answer: 'BFS uses a queue and explores neighbors level by level; DFS uses a stack and explores depth first.' },
+  { question: 'What is a binary search tree?', category: 'Algorithms', answer: 'A tree in which each node has at most two children, and left < root < right.' },
+  { question: 'What are greedy algorithms?', category: 'Algorithms', answer: 'Algorithms that make the best local choice at each step to find a global optimum.' },
+  { question: 'What is the difference between stack and queue?', category: 'Algorithms', answer: 'Stack uses LIFO (last-in, first-out); Queue uses FIFO (first-in, first-out).' },
+  { question: 'How does Dijkstra’s algorithm work?', category: 'Algorithms', answer: 'It finds the shortest path from a source node to all other nodes using a priority queue.' },
+  { question: 'What is a hash table and how is it used?', category: 'Algorithms', answer: 'A data structure that maps keys to values using a hash function for fast lookups.' },
+  { question: 'Explain backtracking with an example.', category: 'Algorithms', answer: 'Backtracking tries all possible solutions recursively, e.g., solving a maze or N-Queens problem.' },
+  { question: 'What are the most common sorting algorithms and their complexities?', category: 'Algorithms', answer: 'Bubble: O(n²), Merge: O(n log n), Quick: O(n log n), Insertion: O(n²), Heap: O(n log n).' },
+
+   // DevOps & Deployment
+  { question: 'What is CI/CD and why is it important?', category: 'DevOps & Deployment', answer: 'CI/CD automates code integration and delivery, reducing errors and improving speed.' },
+  { question: 'What are common CI/CD tools?', category: 'DevOps & Deployment', answer: 'GitHub Actions, Jenkins, GitLab CI, CircleCI, Travis CI.' },
+  { question: 'What is containerization and how is Docker used?', category: 'DevOps & Deployment', answer: 'Docker packages apps with dependencies, ensuring consistent environments.' },
+  { question: 'What is Kubernetes?', category: 'DevOps & Deployment', answer: 'An orchestration platform to manage, scale, and deploy containerized applications.' },
+  { question: 'How does version control contribute to deployment?', category: 'DevOps & Deployment', answer: 'It tracks code changes, enables collaboration, and integrates with CI/CD pipelines.' },
+  { question: 'What is Infrastructure as Code (IaC)?', category: 'DevOps & Deployment', answer: 'IaC manages infrastructure through code (e.g., Terraform, AWS CloudFormation).' },
+  { question: 'What is a reverse proxy and why use it?', category: 'DevOps & Deployment', answer: 'It routes client requests to backend servers and adds features like SSL termination and load balancing.' },
+  { question: 'What is blue-green deployment?', category: 'DevOps & Deployment', answer: 'A strategy to minimize downtime by switching traffic between two environments.' },
+  { question: 'How do you monitor a deployed application?', category: 'DevOps & Deployment', answer: 'Use tools like Prometheus, Grafana, New Relic, or Datadog to track metrics and logs.' },
+  { question: 'What is the 12-factor app methodology?', category: 'DevOps & Deployment', answer: 'A set of principles for building scalable and maintainable SaaS applications.' },
+
+  // Cloud Computing
+  { question: 'What is cloud computing?', category: 'Cloud Computing', answer: 'Cloud computing delivers computing services over the internet on demand.' },
+  { question: 'What are IaaS, PaaS, and SaaS?', category: 'Cloud Computing', answer: 'Infrastructure (IaaS), Platform (PaaS), and Software (SaaS) as services.' },
+  { question: 'What is serverless architecture?', category: 'Cloud Computing', answer: 'Code runs in response to events without managing infrastructure (e.g., AWS Lambda).' },
+  { question: 'What is auto-scaling in the cloud?', category: 'Cloud Computing', answer: 'Automatically adjusts resource capacity based on demand.' },
+  { question: 'What is the difference between public, private, and hybrid cloud?', category: 'Cloud Computing', answer: 'Public: shared resources; Private: owned infrastructure; Hybrid: mix of both.' },
+  { question: 'What are common cloud providers?', category: 'Cloud Computing', answer: 'AWS, Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud.' },
+  { question: 'How do you secure cloud-based applications?', category: 'Cloud Computing', answer: 'Use firewalls, encryption, IAM, least privilege access, and compliance policies.' },
+  { question: 'What is a Virtual Private Cloud (VPC)?', category: 'Cloud Computing', answer: 'A private network within a public cloud environment, providing control over resources.' },
+  { question: 'What is cloud cost optimization?', category: 'Cloud Computing', answer: 'Strategies to reduce spending, such as auto-scaling, reserved instances, and resource monitoring.' },
+  { question: 'What is multi-cloud strategy?', category: 'Cloud Computing', answer: 'Using multiple cloud providers to avoid vendor lock-in and increase redundancy.' }
+];
+
+export default questions;
